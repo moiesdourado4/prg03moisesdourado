@@ -43,7 +43,7 @@
               </Group>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="txtNascimento" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
-                  <Component id="lblIdade" min="-2" pref="253" max="-2" attributes="0"/>
+                  <Component id="lblIdadeImg" min="-2" pref="253" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -73,7 +73,7 @@
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="lblIdade" min="-2" pref="248" max="-2" attributes="0"/>
+                      <Component id="lblIdadeImg" min="-2" pref="248" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
@@ -88,10 +88,10 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="lblIdade">
+    <Component class="javax.swing.JLabel" name="lblIdadeImg">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\moise\Documents\GitHub\prg03moisesdourado\prg03moisesdourado\src\main\java\images\age-range (1).png"/>
+          <Image iconType="2" name="C:\Users\moise\Documents\GitHub\prg03moisesdourado\prg03moisesdourado\src\main\java\br\com\ifba\atividade03\images\age-range (1).png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
@@ -99,7 +99,7 @@
     <Component class="javax.swing.JButton" name="btnBotaoCalc">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\moise\Documents\GitHub\prg03moisesdourado\prg03moisesdourado\src\main\java\images\calculator (1).png"/>
+          <Image iconType="2" name="C:\Users\moise\Documents\GitHub\prg03moisesdourado\prg03moisesdourado\src\main\java\br\com\ifba\atividade03\images\calculator (1).png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Calculadora - Idade"/>
       </Properties>

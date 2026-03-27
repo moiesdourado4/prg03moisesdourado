@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package view;
+package br.com.ifba.atividade03.view;
 
 /**
  *
@@ -28,7 +28,7 @@ public class TeladeCalculo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblIdade = new javax.swing.JLabel();
+        lblIdadeImg = new javax.swing.JLabel();
         btnBotaoCalc = new javax.swing.JButton();
         lblTexto = new javax.swing.JLabel();
         txtNascimento = new javax.swing.JTextField();
@@ -37,10 +37,10 @@ public class TeladeCalculo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblIdade.setIcon(new javax.swing.ImageIcon("C:\\Users\\moise\\Documents\\GitHub\\prg03moisesdourado\\prg03moisesdourado\\src\\main\\java\\images\\age-range (1).png")); // NOI18N
-        lblIdade.setText("jLabel1");
+        lblIdadeImg.setIcon(new javax.swing.ImageIcon("C:\\Users\\moise\\Documents\\GitHub\\prg03moisesdourado\\prg03moisesdourado\\src\\main\\java\\br\\com\\ifba\\atividade03\\images\\age-range (1).png")); // NOI18N
+        lblIdadeImg.setText("jLabel1");
 
-        btnBotaoCalc.setIcon(new javax.swing.ImageIcon("C:\\Users\\moise\\Documents\\GitHub\\prg03moisesdourado\\prg03moisesdourado\\src\\main\\java\\images\\calculator (1).png")); // NOI18N
+        btnBotaoCalc.setIcon(new javax.swing.ImageIcon("C:\\Users\\moise\\Documents\\GitHub\\prg03moisesdourado\\prg03moisesdourado\\src\\main\\java\\br\\com\\ifba\\atividade03\\images\\calculator (1).png")); // NOI18N
         btnBotaoCalc.setText("Calculadora - Idade");
         btnBotaoCalc.addActionListener(this::btnBotaoCalcActionPerformed);
 
@@ -72,7 +72,7 @@ public class TeladeCalculo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblIdadeImg, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -95,7 +95,7 @@ public class TeladeCalculo extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(lblIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblIdadeImg, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(114, 114, 114)
                         .addComponent(lblEnunciado)
@@ -141,7 +141,7 @@ public class TeladeCalculo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBotaoCalc;
     private javax.swing.JLabel lblEnunciado;
-    private javax.swing.JLabel lblIdade;
+    private javax.swing.JLabel lblIdadeImg;
     private javax.swing.JLabel lblShow;
     private javax.swing.JLabel lblTexto;
     private javax.swing.JTextField txtNascimento;
