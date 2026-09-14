@@ -6,6 +6,7 @@ package br.com.ifba.usuario.view;
 import javax.swing.JOptionPane;
 import br.com.ifba.login.view.TelaLogin;
 import br.com.ifba.usuario.validar.ValidadorCadastro;
+import br.com.ifba.usuario.entity.Usuario;
 
 /**
  *
@@ -49,8 +50,8 @@ public class TelaCadastro extends javax.swing.JFrame {
         txtLogin = new javax.swing.JTextField();
         pfSenha = new javax.swing.JPasswordField();
         pfConfirmarSenha = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnCadastrar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,15 +84,15 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         txtGenero.addActionListener(this::txtGeneroActionPerformed);
 
-        jButton1.setBackground(new java.awt.Color(0, 51, 255));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Cadastrar");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        btnCadastrar.setBackground(new java.awt.Color(0, 51, 255));
+        btnCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(this::btnCadastrarActionPerformed);
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(this::jButton2ActionPerformed);
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(this::btnCancelarActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,9 +137,9 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(109, 109, 109)
-                .addComponent(jButton1)
+                .addComponent(btnCadastrar)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(btnCancelar)
                 .addContainerGap(112, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -183,8 +184,8 @@ public class TelaCadastro extends javax.swing.JFrame {
                     .addComponent(pfConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnCadastrar)
+                    .addComponent(btnCancelar))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
@@ -195,47 +196,48 @@ public class TelaCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtGeneroActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        Usuario usuario = new Usuario();
         // TODO add your handling code here:
         //Pega todos os campos e apaga os espaços no inicio e final da string
-        String nome = txtNome.getText().trim();
-        String cpf = txtCPF.getText().trim();
-        String genero = txtGenero.getText().trim();
-        String dataNascimento = txtData.getText().trim();
-        String telefone = txtTelefone.getText().trim();
-        String email = txtEmail.getText().trim();
-        String login = txtLogin.getText().trim();
-        String senha = new String(pfSenha.getPassword());
+        usuario.nome = txtNome.getText().trim();
+        usuario.cpf = txtCPF.getText().trim();
+        usuario.genero = txtGenero.getText().trim();
+        usuario.dataNascimento = txtData.getText().trim();
+        usuario.telefone = txtTelefone.getText().trim();
+        usuario.email = txtEmail.getText().trim();
+        usuario.login = txtLogin.getText().trim();
+        usuario.senha = new String(pfSenha.getPassword());
         String confirmarSenha = new String(pfConfirmarSenha.getPassword());
         
         //Validação
         //Verificar se algum campo está vazio
-        if (nome.isEmpty() || cpf.isEmpty() || genero.isEmpty() || dataNascimento.isEmpty() || 
-            telefone.isEmpty() || email.isEmpty() || login.isEmpty() || senha.isEmpty() || confirmarSenha.isEmpty()){
+        if (usuario.nome.isEmpty() || usuario.cpf.isEmpty() || usuario.genero.isEmpty() || usuario.dataNascimento.isEmpty() || 
+            usuario.telefone.isEmpty() || usuario.email.isEmpty() || usuario.login.isEmpty() || usuario.senha.isEmpty() || confirmarSenha.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Preencha todos os campos.", "Erro de Validação", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
         //Verificar se as senhas são diferentes
-        else if (senha.equals(confirmarSenha) == false){
+        else if (usuario.senha.equals(confirmarSenha) == false){
             javax.swing.JOptionPane.showMessageDialog(this, "As senhas não são iguais.", "Erro de Validação", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
         else{
-            boolean resultado = ValidadorCadastro.contemPalavraProibida(login);
+            boolean resultado = ValidadorCadastro.contemPalavraProibida(usuario.login);
             if(resultado == false){
                 javax.swing.JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!", "Sucesso", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             } else {
                 javax.swing.JOptionPane.showMessageDialog(this, "Login contém palavra proibida", "ERRO NO CADASTRO", javax.swing.JOptionPane.ERROR_MESSAGE);
             }  
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         //abre a tela de login ao selecionar "cancelar"
         TelaLogin telaLogin = new TelaLogin();
         telaLogin.setVisible(true);
         //fecha a tela para cadastrar o usuario
         setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,8 +265,8 @@ public class TelaCadastro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
