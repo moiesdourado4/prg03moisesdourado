@@ -142,13 +142,13 @@ public class TelaLogin extends javax.swing.JFrame {
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         Usuario usuario = new Usuario();
         //1. captura o que foi digitado nos campos
-        usuario.login = txtLogin.getText();
-        usuario.senha = new String(pfSenha.getPassword());
+        usuario.setLogin(txtLogin.getText());
+        usuario.setSenha(new String(pfSenha.getPassword()));
         
         //2. usa as variáveis para preencher o text Area
         taResultado.setText(
-            "Login digitado: " + usuario.login + "\n" +
-            "Senha digitada: " + usuario.senha
+            "Login digitado: " + usuario.getLogin() + "\n" +
+            "Senha digitada: " + usuario.getSenha()
         );
     }//GEN-LAST:event_btnEntrarActionPerformed
 
