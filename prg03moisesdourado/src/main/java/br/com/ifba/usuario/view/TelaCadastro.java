@@ -200,30 +200,32 @@ public class TelaCadastro extends javax.swing.JFrame {
         Usuario usuario = new Usuario();
         // TODO add your handling code here:
         //Pega todos os campos e apaga os espaços no inicio e final da string
-        usuario.nome = txtNome.getText().trim();
-        usuario.cpf = txtCPF.getText().trim();
-        usuario.genero = txtGenero.getText().trim();
-        usuario.dataNascimento = txtData.getText().trim();
-        usuario.telefone = txtTelefone.getText().trim();
-        usuario.email = txtEmail.getText().trim();
-        usuario.login = txtLogin.getText().trim();
-        usuario.senha = new String(pfSenha.getPassword());
+        usuario.setNome(txtNome.getText().trim());
+        usuario.setCpf(txtCPF.getText().trim());
+        usuario.setGenero(txtGenero.getText().trim());
+        usuario.setDataNascimento(txtData.getText().trim());
+        usuario.setTelefone(txtTelefone.getText().trim());
+        usuario.setEmail(txtEmail.getText().trim());
+        usuario.setLogin(txtLogin.getText().trim());
+        usuario.setSenha(new String(pfSenha.getPassword()));
         String confirmarSenha = new String(pfConfirmarSenha.getPassword());
         
         //Validação
         //Verificar se algum campo está vazio
-        if (usuario.nome.isEmpty() || usuario.cpf.isEmpty() || usuario.genero.isEmpty() || usuario.dataNascimento.isEmpty() || 
-            usuario.telefone.isEmpty() || usuario.email.isEmpty() || usuario.login.isEmpty() || usuario.senha.isEmpty() || confirmarSenha.isEmpty()){
+        if (usuario.getNome().isEmpty() || usuario.getCpf().isEmpty() || usuario.getGenero().isEmpty() || usuario.getDataNascimento().isEmpty() || 
+            usuario.getTelefone().isEmpty() || usuario.getEmail().isEmpty() || usuario.getLogin().isEmpty() || usuario.getSenha().isEmpty() || confirmarSenha.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Preencha todos os campos.", "Erro de Validação", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
         //Verificar se as senhas são diferentes
-        else if (usuario.senha.equals(confirmarSenha) == false){
+        else if (usuario.getSenha().equals(confirmarSenha) == false){
             javax.swing.JOptionPane.showMessageDialog(this, "As senhas não são iguais.", "Erro de Validação", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
         else{
-            boolean resultado = ValidadorCadastro.contemPalavraProibida(usuario.login);
+            boolean resultado = ValidadorCadastro.contemPalavraProibida(usuario.getLogin());
             if(resultado == false){
-                javax.swing.JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!", "Sucesso", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                //Cria um novo objeto da classe Usuario passando para ser construtor os dados digitados
+                Usuario usuario1 = new Usuario(usuario.getNome(),usuario.getCpf(),usuario.getLogin(),usuario.getSenha());
+                javax.swing.JOptionPane.showMessageDialog(this, "usuario: " + usuario1.getNome() + "\nCPF: " + usuario1.getCpf() + "\nLogin: " + usuario1.getLogin() + "\nSenha: " + usuario1.getSenha(),"Cadastro realizado com sucesso!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             } else {
                 javax.swing.JOptionPane.showMessageDialog(this, "Login contém palavra proibida", "ERRO NO CADASTRO", javax.swing.JOptionPane.ERROR_MESSAGE);
             }  
