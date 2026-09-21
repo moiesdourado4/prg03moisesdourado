@@ -150,6 +150,14 @@ public class TelaLogin extends javax.swing.JFrame {
             "Login digitado: " + usuario.getLogin() + "\n" +
             "Senha digitada: " + usuario.getSenha()
         );
+        //3. integra "autenticar" na tela de login
+        boolean resultado = usuario.autenticar(usuario.getLogin(), usuario.getSenha());
+        if(resultado == true){
+            javax.swing.JOptionPane.showMessageDialog(this, "acesso liberado!", "login", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            javax.swing.JOptionPane.showMessageDialog(this, "acesso negado!", "login", javax.swing.JOptionPane.ERROR_MESSAGE);
+        } 
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
