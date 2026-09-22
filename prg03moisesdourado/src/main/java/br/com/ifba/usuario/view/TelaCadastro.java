@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import br.com.ifba.login.view.TelaLogin;
 import br.com.ifba.usuario.validar.ValidadorCadastro;
 import br.com.ifba.usuario.entity.Usuario;
+import br.com.ifba.usuario.validar.ValidadorUsuario;
 
 /**
  *
@@ -210,26 +211,34 @@ public class TelaCadastro extends javax.swing.JFrame {
         usuario.setSenha(new String(pfSenha.getPassword()));
         String confirmarSenha = new String(pfConfirmarSenha.getPassword());
         
+        boolean camposPreenchidos = ValidadorUsuario.camposPreenchidos(usuario, confirmarSenha);
+        boolean senhasIguais = ValidadorUsuario.senhasIguais(usuario, confirmarSenha);
+        boolean cpfValido = ValidadorUsuario.cpfValido(usuario.getCpf());
+        boolean resultado = ValidadorCadastro.contemPalavraProibida(usuario.getLogin());
+        boolean senhaForte = ValidadorUsuario.senhaForte(usuario.getSenha());
+        
         //Validação
         //Verificar se algum campo está vazio
-        if (usuario.getNome().isEmpty() || usuario.getCpf().isEmpty() || usuario.getGenero().isEmpty() || usuario.getDataNascimento().isEmpty() || 
-            usuario.getTelefone().isEmpty() || usuario.getEmail().isEmpty() || usuario.getLogin().isEmpty() || usuario.getSenha().isEmpty() || confirmarSenha.isEmpty()){
+        if(camposPreenchidos == false)
+                {
             javax.swing.JOptionPane.showMessageDialog(this, "Preencha todos os campos.", "Erro de Validação", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
         //Verificar se as senhas são diferentes
-        else if (usuario.getSenha().equals(confirmarSenha) == false){
+        else if (senhasIguais == false){
             javax.swing.JOptionPane.showMessageDialog(this, "As senhas não são iguais.", "Erro de Validação", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
-        else{
-            boolean resultado = ValidadorCadastro.contemPalavraProibida(usuario.getLogin());
-            if(resultado == false){
-                //Cria um novo objeto da classe Usuario passando para ser construtor os dados digitados
-                Usuario usuario1 = new Usuario(usuario.getNome(),usuario.getCpf(),usuario.getLogin(),usuario.getSenha());
-                javax.swing.JOptionPane.showMessageDialog(this, "usuario: " + usuario1.getNome() + "\nCPF: " + usuario1.getCpf() + "\nLogin: " + usuario1.getLogin() + "\nSenha: " + usuario1.getSenha(),"Cadastro realizado com sucesso!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        else if(cpfValido == false){
+            javax.swing.JOptionPane.showMessageDialog(this, "CPF INVÁLIDO!", "ERRO DE VALIDAÇÃO", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+        else if(senhaForte == false){
+            javax.swing.JOptionPane.showMessageDialog(this, "A senha " + usuario.getSenha() + " não é forte!", "Senha fraca", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+        else if(resultado == false){                
+                javax.swing.JOptionPane.showMessageDialog(this, "usuario: " + usuario.getNome() + "\nCPF: " + usuario.getCpf() + "\nLogin: " + usuario.getLogin() + "\nSenha: " + usuario.getSenha(),"Cadastro realizado com sucesso!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             } else {
                 javax.swing.JOptionPane.showMessageDialog(this, "Login contém palavra proibida", "ERRO NO CADASTRO", javax.swing.JOptionPane.ERROR_MESSAGE);
             }  
-        }
+        
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
