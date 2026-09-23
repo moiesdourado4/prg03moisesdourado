@@ -3,101 +3,137 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package br.com.ifba.usuario.entity;
+import br.com.ifba.perfil.entity.Perfil;
+import br.com.ifba.pessoa.entity.Pessoa;
+import br.com.ifba.status.model.Status;
 import br.com.ifba.usuario.interfaces.Autenticavel;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author moise
  */
 public class Usuario implements Autenticavel{
     //Atributos
-    private String nome;
-    private String cpf;
-    private String genero;
-    private String dataNascimento;
+    private Pessoa pessoa;
+    private List<Perfil> perfis;
+    private Perfil perfilAtivo;
+    private Status status;
+    
+    private String nomeUsuario;
     private String telefone;
     private String email;
     private String login;
     private String senha;
+    private LocalDateTime criadoEm;
+    private LocalDateTime ultimoLogin;
     
-    //métodos
+    //Métodos
     public Usuario(){
+        
     }
-    public Usuario (String nome, String cpf, String login, String senha){
-        this.nome = nome;
-        this.cpf = cpf;
+    public Usuario(Pessoa pessoa, String login, String senha){
+        this.pessoa = pessoa;
         this.login = login;
         this.senha = senha;
-    }
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+        this.perfis = new ArrayList<>();
+        this.status = Status.INATIVO;
+        this.criadoEm = LocalDateTime.now();
     }
 
-    public String getCpf() {
-        return cpf;
+    public Pessoa getPessoa(){
+        return pessoa;
     }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setPessoa(Pessoa pessoa){
+        this.pessoa = pessoa;
     }
-
-    public String getGenero() {
-        return genero;
+    
+    public List<Perfil> getPerfis(){
+        return perfis;
     }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
+    public void setPerfis(List<Perfil> perfis){
+        this.perfis = perfis;
     }
-
-    public String getDataNascimento() {
-        return dataNascimento;
+    
+    public Perfil getPerfilAtivo(){
+        return perfilAtivo;
     }
-
-    public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setPerfilAtivo(Perfil perfilAtivo){
+        this.perfilAtivo = perfilAtivo;
     }
-
-    public String getTelefone() {
+    
+    public Status getStatus(){
+        return status;
+    }
+    public void setStatus(Status status){
+        this.status = status;
+    }
+    
+    public String getNomeUsuario(){
+        return nomeUsuario;
+    }
+    public void setNomeUsuario(String nomeUsuario){
+        this.nomeUsuario = nomeUsuario;
+    }
+    
+    public String getTelefone(){
         return telefone;
     }
-
-    public void setTelefone(String telefone) {
+    public void setTelefone(String telefone){
         this.telefone = telefone;
     }
-
-    public String getEmail() {
+    
+    public String getEmail(){
         return email;
     }
-
-    public void setEmail(String email) {
+    public void setEmail(String email){
         this.email = email;
     }
-
-    public String getLogin() {
+    
+    public String getLogin(){
         return login;
     }
-
-    public void setLogin(String login) {
+    public void setLogin(String login){
         this.login = login;
     }
-
-    public String getSenha() {
+    
+    public String getSenha(){
         return senha;
     }
-
-    public void setSenha(String senha) {
+    public void setSenha(String senha){
         this.senha = senha;
     }
+    
+    public LocalDateTime getCriadoEm(){
+        return criadoEm;
+    }
+    public void setCriadoEm(LocalDateTime criadoEm){
+        this.criadoEm = criadoEm;
+    }
+    
+    public LocalDateTime getUltimoLogin(){
+        return ultimoLogin;
+    }
+    public void setUltimoLogin(LocalDateTime ultimoLogin){
+        this.ultimoLogin = ultimoLogin;
+    }
+    /*private boolean senhaValida(String senha){
+        return this.senha.equals(senha);
+    }*/
+    
     @Override
-    public boolean autenticar (String login, String senha){
-        if(this.login.equals(login) == true && this.senha.equals(senha) == true){
+    public boolean autenticar(String login, String senha){
+        if (this.login.equals(login) && this.senha.equals(senha)){
             return true;
         }
         else{
-            return (false);
+            return false;
         }
+        //return this.login.equals(login) && senhaValida(senha);
+    }
+    
+    public void adicionarPerfilALista(Perfil perfil){
+        this.perfis.add(perfil);
     }
 }
