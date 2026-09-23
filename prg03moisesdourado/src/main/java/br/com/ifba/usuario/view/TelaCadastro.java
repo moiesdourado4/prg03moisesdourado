@@ -5,6 +5,7 @@
 package br.com.ifba.usuario.view;
 import javax.swing.JOptionPane;
 import br.com.ifba.login.view.TelaLogin;
+import br.com.ifba.pessoa.entity.Pessoa;
 import br.com.ifba.usuario.validar.ValidadorCadastro;
 import br.com.ifba.usuario.entity.Usuario;
 import br.com.ifba.usuario.validar.ValidadorUsuario;
@@ -198,22 +199,25 @@ public class TelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtGeneroActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        Pessoa pessoa = new Pessoa();
         Usuario usuario = new Usuario();
         // TODO add your handling code here:
         //Pega todos os campos e apaga os espaços no inicio e final da string
-        usuario.setNome(txtNome.getText().trim());
-        usuario.setCpf(txtCPF.getText().trim());
-        usuario.setGenero(txtGenero.getText().trim());
-        usuario.setDataNascimento(txtData.getText().trim());
+        pessoa.setNomeCompleto(txtNome.getText().trim());
+        pessoa.setCpf(txtCPF.getText().trim());
+        pessoa.setGenero(txtGenero.getText().trim());
+        pessoa.setDataNascimento(txtData.getText().trim());
         usuario.setTelefone(txtTelefone.getText().trim());
         usuario.setEmail(txtEmail.getText().trim());
         usuario.setLogin(txtLogin.getText().trim());
         usuario.setSenha(new String(pfSenha.getPassword()));
         String confirmarSenha = new String(pfConfirmarSenha.getPassword());
         
+        usuario.setPessoa(pessoa);
+        
         boolean camposPreenchidos = ValidadorUsuario.camposPreenchidos(usuario, confirmarSenha);
         boolean senhasIguais = ValidadorUsuario.senhasIguais(usuario, confirmarSenha);
-        boolean cpfValido = ValidadorUsuario.cpfValido(usuario.getCpf());
+        boolean cpfValido = ValidadorUsuario.cpfValido(usuario.getPessoa().getCpf());
         boolean resultado = ValidadorCadastro.contemPalavraProibida(usuario.getLogin());
         boolean senhaForte = ValidadorUsuario.senhaForte(usuario.getSenha());
         
@@ -234,7 +238,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "A senha " + usuario.getSenha() + " não é forte!", "Senha fraca", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
         else if(resultado == false){                
-                javax.swing.JOptionPane.showMessageDialog(this, "usuario: " + usuario.getNome() + "\nCPF: " + usuario.getCpf() + "\nLogin: " + usuario.getLogin() + "\nSenha: " + usuario.getSenha(),"Cadastro realizado com sucesso!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "usuario: " + usuario.getPessoa().getNomeCompleto() + "\nCPF: " + usuario.getPessoa().getCpf() + "\nLogin: " + usuario.getLogin() + "\nSenha: " + usuario.getSenha(),"Cadastro realizado com sucesso!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             } else {
                 javax.swing.JOptionPane.showMessageDialog(this, "Login contém palavra proibida", "ERRO NO CADASTRO", javax.swing.JOptionPane.ERROR_MESSAGE);
             }  
