@@ -9,5 +9,5 @@ package br.com.ifba.status.model;
  * @author moise
  */
 public enum Status {
-    
+    ATIVO, INATIVO;
 }
